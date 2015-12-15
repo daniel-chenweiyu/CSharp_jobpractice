@@ -76,6 +76,14 @@
           <Property Name="Class" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsSelected" Type="bit" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Schedule_Detial">
           <End Role="Detail" Type="Self.Detail" Multiplicity="1" />
           <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
@@ -97,6 +105,7 @@
           <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Schedule_Detial" Association="Self.FK_Schedule_Detial">
             <End Role="Detail" EntitySet="Detail" />
             <End Role="Schedule" EntitySet="Schedule" />
@@ -153,6 +162,7 @@
           <EntitySet Name="Class" EntityType="MovieDatabase1Model.Class" />
           <EntitySet Name="Score" EntityType="MovieDatabase1Model.Score" />
           <EntitySet Name="Student" EntityType="MovieDatabase1Model.Student" />
+          <EntitySet Name="tblCity" EntityType="MovieDatabase1Model.tblCity" />
         </EntityContainer>
         <EntityType Name="MovieType">
           <Key>
@@ -204,6 +214,14 @@
           <Property Name="Born" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Class" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsSelected" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -285,6 +303,15 @@
                 <ScalarProperty Name="Class" ColumnName="Class" />
                 <ScalarProperty Name="Born" ColumnName="Born" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCity">
+            <EntityTypeMapping TypeName="MovieDatabase1Model.tblCity">
+              <MappingFragment StoreEntitySet="tblCity">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

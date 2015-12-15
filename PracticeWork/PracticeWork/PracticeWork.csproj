@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListBoxController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
@@ -229,6 +230,10 @@
     <Compile Include="Models\Student.cs">
       <DependentUpon>MovieModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tblCity.cs">
+      <DependentUpon>MovieModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewModels\CitiesViewModel.cs" />
     <Compile Include="Models\ViewModels\DetialViewModels.cs" />
     <Compile Include="Models\ViewModels\StudentViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -322,6 +327,7 @@
     <Content Include="Views\Message\Create.cshtml" />
     <Content Include="Views\School\Index1.cshtml" />
     <Content Include="Views\School\Index2.cshtml" />
+    <Content Include="Views\ListBox\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

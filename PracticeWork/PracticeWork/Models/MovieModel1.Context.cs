@@ -33,5 +33,6 @@ namespace PracticeWork.Models
         public virtual DbSet<Class> Class { get; set; }
         public virtual DbSet<Score> Score { get; set; }
         public virtual DbSet<Student> Student { get; set; }
+        public virtual DbSet<tblCity> tblCity { get; set; }
     }
 }
