@@ -5,6 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MovieDatabase1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CLID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CLNM" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="Detail">
           <Key>
             <PropertyRef Name="Id" />
@@ -39,6 +56,26 @@
           <Property Name="TitleID" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Score" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="NID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Born" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Class" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Schedule_Detial">
           <End Role="Detail" Type="Self.Detail" Multiplicity="1" />
           <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
@@ -52,10 +89,14 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MovieDatabase1ModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail" EntityType="Self.Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MovieTheater" EntityType="Self.MovieTheater" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MovieType" EntityType="Self.MovieType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Schedule_Detial" Association="Self.FK_Schedule_Detial">
             <End Role="Detail" EntitySet="Detail" />
             <End Role="Schedule" EntitySet="Schedule" />
@@ -108,6 +149,10 @@
           </AssociationSet>
           <EntitySet Name="MovieType" EntityType="MovieDatabase1Model.MovieType" />
           <EntitySet Name="MovieTheater" EntityType="MovieDatabase1Model.MovieTheater" />
+          <EntitySet Name="Article" EntityType="MovieDatabase1Model.Article" />
+          <EntitySet Name="Class" EntityType="MovieDatabase1Model.Class" />
+          <EntitySet Name="Score" EntityType="MovieDatabase1Model.Score" />
+          <EntitySet Name="Student" EntityType="MovieDatabase1Model.Student" />
         </EntityContainer>
         <EntityType Name="MovieType">
           <Key>
@@ -122,6 +167,43 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Theater" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CLID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CLNM" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Score1" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="NID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Born" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Class" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -163,6 +245,47 @@
             <EntityTypeMapping TypeName="MovieDatabase1Model.MovieTheater">
               <MappingFragment StoreEntitySet="MovieTheater">
                 <ScalarProperty Name="Theater" ColumnName="Theater" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Article">
+            <EntityTypeMapping TypeName="MovieDatabase1Model.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Class">
+            <EntityTypeMapping TypeName="MovieDatabase1Model.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="CLNM" ColumnName="CLNM" />
+                <ScalarProperty Name="CLID" ColumnName="CLID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Score">
+            <EntityTypeMapping TypeName="MovieDatabase1Model.Score">
+              <MappingFragment StoreEntitySet="Score">
+                <ScalarProperty Name="NID" ColumnName="NID" />
+                <ScalarProperty Name="Score1" ColumnName="Score" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="MovieDatabase1Model.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Born" ColumnName="Born" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

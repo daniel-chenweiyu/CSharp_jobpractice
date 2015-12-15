@@ -62,8 +62,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Theater, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Theater, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Theater, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.Theater, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Theater, "", new { @class = "text-danger" })*@
+                @Html.EditorFor(model => model.Theater,
+                    "CheckBoxList",
+                    new
+                    {
+                        TagName = "Categories",
+                        CheckBoxItems = ViewBag.CategoryItems,
+                        Position = Position.Vertical,
+                        Numbers = 3
+                    })
             </div>
         </div>
 

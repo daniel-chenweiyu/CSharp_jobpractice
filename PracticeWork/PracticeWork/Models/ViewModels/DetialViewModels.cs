@@ -34,5 +34,6 @@ namespace PracticeWork.Models
             [Required]
             public string Theater { get; set; }
         }
+        public string SelectedCategories { get; set; }
     }
 }

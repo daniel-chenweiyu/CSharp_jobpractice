@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PracticeWork.Models.Student>
+@{
+    ViewBag.Title = "Index1";
+}
+
+<h2>JOIN所有TABLE所有欄位,顯示所有狀態=Y,年紀為28~29歲的資料</h2>
+
+<p>
+    @using (Html.BeginForm("Index1", "School", FormMethod.Get))
+    {
+    <p>
+        @* 下拉式選單 *@
+        輸入1後即可得到結果:@Html.TextBox("searchString")
+        <input type="submit" value="搜尋" />
+    </p>
+    }
+    </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Born)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Class)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Born)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+        </tr>
+    }
+
+</table>

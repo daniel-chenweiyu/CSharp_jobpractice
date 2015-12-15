@@ -29,5 +29,9 @@ namespace PracticeWork.Models
         public virtual DbSet<Schedule> Schedule { get; set; }
         public virtual DbSet<MovieType> MovieType { get; set; }
         public virtual DbSet<MovieTheater> MovieTheater { get; set; }
+        public virtual DbSet<Article> Article { get; set; }
+        public virtual DbSet<Class> Class { get; set; }
+        public virtual DbSet<Score> Score { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
     }
 }

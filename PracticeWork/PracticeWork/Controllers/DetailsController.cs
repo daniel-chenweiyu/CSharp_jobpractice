@@ -13,8 +13,30 @@ namespace PracticeWork.Controllers
     public class DetailsController : Controller
     {
         private MovieDatabase1Entities db = new MovieDatabase1Entities();
+        //從資料庫抓取電影院的值,並控制選取時的行為
+        private List<SelectListItem> CategorySelectListItems(string selected = "")
+        {
+            var categories = from t in db.MovieTheater select t;
+            var items = new List<SelectListItem>();
 
-        
+            var selectedCategories = string.IsNullOrWhiteSpace(selected)
+                ? null
+                : selected.Split(',');
+
+            foreach (var c in categories)
+            {
+                items.Add(item: new SelectListItem()
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Theater,
+                    Selected = selectedCategories == null
+                        ? false
+                        : selectedCategories.Contains(c.Id.ToString())
+                });
+            }
+            return items;
+        }
+
         // GET: Details
         public ActionResult Index(string movieGenre,string searchString)
         {
@@ -60,7 +82,10 @@ namespace PracticeWork.Controllers
         // GET: Details/Create
         public ActionResult Create()
         {
-            //取得所有電影類型的方法
+            //checkboxlist
+            //var items = this.CategorySelectListItems();
+            //ViewBag.CategoryItems = items;
+            //取得所有電影類型的方法(下拉式選單)
             var GenreQry = from t in db.MovieType orderby t.Type select t;
             SelectList selectlist = new SelectList(GenreQry, "Type", "Type");
             ViewBag.movietypeselectlist = selectlist;
@@ -74,7 +99,12 @@ namespace PracticeWork.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,ReleasDate,Genre,Price,Reservation,Theater")] Detail detail)
+        //public ActionResult Create([Bind(Include = "Id,Title,ReleasDate,Genre,Price,Reservation,Theater")] Detail detail,string[] Theater)
         {
+            //var detail = new Detail
+            //{
+            //    Theater = string.Join(",", Theater)
+            //};
             if (ModelState.IsValid)
             {
                 db.Detail.Add(detail);
@@ -82,7 +112,8 @@ namespace PracticeWork.Controllers
                 return RedirectToAction("Index");
 
             }
-
+            //var items = this.CategorySelectListItems();
+            //ViewBag.CategoryItems = items;
             return View(detail);
         }
 

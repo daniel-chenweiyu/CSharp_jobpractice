@@ -4,12 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="33682ad5a0ec4898af193f8ea3c9a08a" Name="Diagram1">
+      <Diagram DiagramId="33682ad5a0ec4898af193f8ea3c9a08a" Name="Diagram1" ZoomLevel="97">
         <EntityTypeShape EntityType="MovieDatabase1Model.Detail" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieDatabase1Model.Schedule" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="MovieDatabase1Model.FK_Schedule_Detial" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MovieDatabase1Model.MovieType" Width="1.5" PointX="5.875" PointY="1.25" />
         <EntityTypeShape EntityType="MovieDatabase1Model.MovieTheater" Width="1.5" PointX="5.75" PointY="3.125" />
+        <EntityTypeShape EntityType="MovieDatabase1Model.Article" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MovieDatabase1Model.Class" Width="1.5" PointX="3.75" PointY="5.75" />
+        <EntityTypeShape EntityType="MovieDatabase1Model.Score" Width="1.5" PointX="5.75" PointY="5.75" />
+        <EntityTypeShape EntityType="MovieDatabase1Model.Student" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
