@@ -7,12 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PracticeWork.Models;
+using PagedList;
 
 namespace PracticeWork.Controllers
 {
     public class DetailsController : Controller
     {
         private MovieDatabase1Entities db = new MovieDatabase1Entities();
+
+        //設定頁面資料比數
+        private int pageSize = 5;
+
         //從資料庫抓取電影院的值,並控制選取時的行為
         private List<SelectListItem> CategorySelectListItems(string selected = "")
         {
@@ -38,7 +43,7 @@ namespace PracticeWork.Controllers
         }
 
         // GET: Details
-        public ActionResult Index(string movieGenre,string searchString)
+        public ActionResult Index(string movieGenre,string searchString, int page = 1)
         {
             //新增電影類型的下拉式選單
             var GenreList = new List<string>();
@@ -49,19 +54,23 @@ namespace PracticeWork.Controllers
 
             ViewBag.movieGenre = new SelectList(GenreList);
 
-            var movies = from m in db.Detail select m;
+            var movies = from m in db.Detail orderby m.Id select m ;
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                movies = movies.Where(s => s.Title.Contains(searchString));
+                movies = movies.Where(s => s.Title.Contains(searchString)).OrderBy(s=>s.Id);
             }
 
             if(!string.IsNullOrEmpty(movieGenre))
             {
-                movies = movies.Where(x => x.Genre == movieGenre);
+                movies = movies.Where(x => x.Genre == movieGenre).OrderBy(s => s.Id);
             }
 
-            return View(movies);
+            int currentPage = page < 1 ? 1 : page;
+
+            var result = movies.ToPagedList(currentPage, pageSize);
+
+            return View(result);
         }
 
         // GET: Details/Details/5
