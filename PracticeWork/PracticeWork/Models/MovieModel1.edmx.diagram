@@ -15,6 +15,8 @@
         <EntityTypeShape EntityType="MovieDatabase1Model.Score" Width="1.5" PointX="5.75" PointY="5.75" />
         <EntityTypeShape EntityType="MovieDatabase1Model.Student" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="MovieDatabase1Model.tblCity" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MovieDatabase1Model.TreeView" Width="1.5" PointX="3.625" PointY="8.875" />
+        <AssociationConnector Association="MovieDatabase1Model.FK_TreeView_TreeView" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -84,6 +84,16 @@
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="IsSelected" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="TreeView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsWritten" Type="bit" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+        </EntityType>
         <Association Name="FK_Schedule_Detial">
           <End Role="Detail" Type="Self.Detail" Multiplicity="1" />
           <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
@@ -93,6 +103,18 @@
             </Principal>
             <Dependent Role="Schedule">
               <PropertyRef Name="TitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TreeView_TreeView">
+          <End Role="TreeView" Type="Self.TreeView" Multiplicity="0..1" />
+          <End Role="TreeView1" Type="Self.TreeView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TreeView">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TreeView1">
+              <PropertyRef Name="ParentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -106,9 +128,14 @@
           <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TreeView" EntityType="Self.TreeView" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Schedule_Detial" Association="Self.FK_Schedule_Detial">
             <End Role="Detail" EntitySet="Detail" />
             <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TreeView_TreeView" Association="Self.FK_TreeView_TreeView">
+            <End Role="TreeView" EntitySet="TreeView" />
+            <End Role="TreeView1" EntitySet="TreeView" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -163,6 +190,11 @@
           <EntitySet Name="Score" EntityType="MovieDatabase1Model.Score" />
           <EntitySet Name="Student" EntityType="MovieDatabase1Model.Student" />
           <EntitySet Name="tblCity" EntityType="MovieDatabase1Model.tblCity" />
+          <EntitySet Name="TreeView" EntityType="MovieDatabase1Model.TreeView" />
+          <AssociationSet Name="FK_TreeView_TreeView" Association="MovieDatabase1Model.FK_TreeView_TreeView">
+            <End Role="TreeView" EntitySet="TreeView" />
+            <End Role="TreeView1" EntitySet="TreeView" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="MovieType">
           <Key>
@@ -223,6 +255,30 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IsSelected" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="TreeView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsWritten" Type="Boolean" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" />
+          <NavigationProperty Name="TreeView1" Relationship="MovieDatabase1Model.FK_TreeView_TreeView" FromRole="TreeView" ToRole="TreeView1" />
+          <NavigationProperty Name="TreeView2" Relationship="MovieDatabase1Model.FK_TreeView_TreeView" FromRole="TreeView1" ToRole="TreeView" />
+        </EntityType>
+        <Association Name="FK_TreeView_TreeView">
+          <End Type="MovieDatabase1Model.TreeView" Role="TreeView" Multiplicity="0..1" />
+          <End Type="MovieDatabase1Model.TreeView" Role="TreeView1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TreeView">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TreeView1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -313,6 +369,17 @@
               <MappingFragment StoreEntitySet="tblCity">
                 <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TreeView">
+            <EntityTypeMapping TypeName="MovieDatabase1Model.TreeView">
+              <MappingFragment StoreEntitySet="TreeView">
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="IsWritten" ColumnName="IsWritten" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
