@@ -1,0 +1,54 @@
+﻿@using PracticeWork.Models;
+@model PracticeWork.Models.ViewModels.TreeViewModel
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_TreeGridLayout.cshtml";
+}
+
+@helper GenerateTree(IEnumerable<TreeView> nodes, int nodeID)
+    {
+if (nodes.Any(x => x.ParentID == nodeID))
+{
+        <ul>
+            @foreach (var item in nodes.Where(x => x.ParentID == nodeID).OrderBy(x => x.Sort))
+            {
+                <li>
+                    <span>@item.Title</span>
+                    @GenerateTree(nodes, item.Id)
+                </li>
+            }
+        </ul>
+}
+}
+<h2>ASP.NET MVC + jQuery EasyUI - Tree</h2>
+<hr />
+<div id="TreeView">
+    @if (Model.RootNode != null && Model.TreeNodes.Count > 0)
+    {
+        <ul id="tt" class="easyui-tree">
+            <li>
+                <span>@Model.RootNode.Title</span>
+                @GenerateTree(Model.TreeNodes, Model.RootNode.Id)
+            </li>
+        </ul>
+    }
+</div>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        @*@RenderBody()*@
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.easyui-1.4.3.min.js"></script>
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>
