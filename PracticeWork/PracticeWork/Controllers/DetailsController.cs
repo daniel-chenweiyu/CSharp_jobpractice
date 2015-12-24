@@ -197,5 +197,20 @@ namespace PracticeWork.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult TestAction(Student form)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewData["Message"] = "未通過驗證";
+                return View();
+            }
+            else
+            {
+                ViewData["Message"] = "已通過驗證!";
+                ViewData["Name"] = form.Name;
+                ViewData[" Born"] = form.Born;
+                return View();
+            }
+        }
     }
 }

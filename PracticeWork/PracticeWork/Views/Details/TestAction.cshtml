@@ -1,0 +1,15 @@
+﻿@using (Html.BeginForm())
+{
+    <div>
+        @Html.Label("輸入名稱:")
+        <input type="text" name="Name"/><br/>
+        @Html.Label("輸入出生地:")
+        <input type="text" name="Born" /><br />
+    </div>
+    <div>
+        驗證狀態:@ViewData["Message"]<br/>
+        輸入金額為:@ViewData["Name"]<br/>
+        名稱為:@ViewData[" Born"]
+    </div>
+    <input type="submit"/>
+}

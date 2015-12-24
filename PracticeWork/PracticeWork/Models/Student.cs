@@ -6,7 +6,7 @@
 //     如果重新產生程式碼，將會覆寫對這個檔案的手動變更。
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace PracticeWork.Models
 {
     using System;
@@ -15,8 +15,10 @@ namespace PracticeWork.Models
     public partial class Student
     {
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
         public int Age { get; set; }
+        [Required]
         public string Born { get; set; }
         public string Class { get; set; }
         public bool Status { get; set; }

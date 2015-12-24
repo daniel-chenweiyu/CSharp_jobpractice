@@ -657,6 +657,7 @@
     <Content Include="Views\School\Index2.cshtml" />
     <Content Include="Views\ListBox\Index.cshtml" />
     <Content Include="Views\TreeView\Index.cshtml" />
+    <Content Include="Views\Details\TestAction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
