@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-left">@*navbar navbar-inverse navbar-fixed-top*@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,18 +20,20 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-left">
                     <li>@Html.ActionLink("首頁", "Index", "Home")</li>
                   @*  <li>@Html.ActionLink("關於", "About", "Home")</li>*@
                     <li>@Html.ActionLink("Movie", "Index", "Details")</li>
                     <li>@Html.ActionLink("單一檔案上傳", "Uploadone", "Upload")</li>
                     <li>@Html.ActionLink("多檔案上傳", "MultiUpload", "Upload")</li>
+                    <li>@Html.ActionLink("Check和Radio實作", "Button", "Details")</li>
                     <li>@Html.ActionLink("留言板","Index","Message")</li>
                     <li>@Html.ActionLink("ListBox", "Index", "ListBox")</li>
                     <li>@Html.ActionLink("TreeView", "Index", "TreeView")</li>
                     <li>@Html.ActionLink("JOIN所有TABLE所有欄位", "Index1", "School")</li>
                     <li>@Html.ActionLink("UpdatePanel", "TestAction", "Details")</li>
                    @* <li>@Html.ActionLink("連絡方式", "Contact", "Home")</li>*@
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -41,12 +41,14 @@ namespace PracticeWork.Controllers
                            Mas = ma.Score1,
                            Avg = (ch.Score1 + en.Score1 + ma.Score1) / 3
                        };
+            SelectList selectlist = new SelectList(show);
+            ViewBag.ShowItems = selectlist;
             //foreach(var SC in show)
             //{
             //    Console.WriteLine(SC.Id.ToString(), SC.Name, SC.Class, SC.Chs, SC.Ens, SC.Mas, SC.Avg);
             //}
             //Console.Read();
-            return View(show);
+            return View();
         }
     }
 }

@@ -197,6 +197,7 @@ namespace PracticeWork.Controllers
             }
             base.Dispose(disposing);
         }
+        // UpdatePanel實作
         public ActionResult TestAction(Student form)
         {
             if (!ModelState.IsValid)
@@ -211,6 +212,15 @@ namespace PracticeWork.Controllers
                 ViewData[" Born"] = form.Born;
                 return View();
             }
+        }
+
+        public ActionResult  Button()
+        {
+            var Theater = from t in db.MovieTheater select t;
+            SelectList selectlist = new SelectList(Theater, "Id", "Theater");
+
+            ViewBag.TheaterItems = selectlist;
+            return View();
         }
     }
 }

@@ -1,0 +1,28 @@
+﻿<h2>CheckBoxList & RadioButtonList- use SelectList</h2>
+<div>
+    <p>
+        CheckBoxList - Horizontal - Each Row Have 2 Items
+    </p>
+    <p>
+        @Html.CheckBoxList("CheckBoxList1",(SelectList)ViewBag.TheaterItems,null,Position.Horizontal,2)
+    </p>
+    <p>
+        CheckBoxList - Vertical - 3 Columns
+    </p>
+    <p>
+        @Html.CheckBoxList("CheckBoxList2", (SelectList)ViewBag.TheaterItems, null, Position.Vertical, 3)
+    </p>
+    <hr/>
+    <p>
+        RadioButtonList - Horizontal - Each Row Have 2 Items
+    </p>
+    <p>
+        @Html.RadioButtonList("RadioButtonList1", (SelectList)ViewBag.TheaterItems, null, Position.Horizontal, 2)
+    </p>
+    <p>
+        RadioButtonList - Vertical - 3 Columns
+    </p>
+    <p>
+        @Html.RadioButtonList("RadioButtonList2", (SelectList)ViewBag.TheaterItems, null, Position.Vertical, 3)
+    </p>
+</div>
